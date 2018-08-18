@@ -31,7 +31,7 @@ Insert documents into your database.
 ## Start/stop server cluster
 
 1. Start mongodb on your system (Linux with systemd: `systemctl start mongodb`)
-2. Start server: `MONGODB_PORT=27017 MONGODB_DATABASE=scooter-api MONGODB_COLLECTION=positions PORT=3000 npm run start-watching`
+2. Start server: `MONGODB_DATABASE=scooter-api MONGODB_COLLECTION=positions PORT=3000 npm run start-watching`
 
 Now you can start requesting the server on port 3000. I like to use [httpie](https://httpie.org):
 
