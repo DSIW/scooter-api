@@ -51,8 +51,7 @@ export default class Scooters {
   async positionsByLicensePlate(license_plate) {
     return await Scooter.aggregate([
       {$match: {license_plate: license_plate}},
-      {$sort: {_request_time: 1}},
-      {$project: {_request_time: 1, energy_level: 1}},
+      {$sort: {_request_time: 1}}
     ]).exec()
   }
 
