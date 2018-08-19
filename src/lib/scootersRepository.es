@@ -58,8 +58,7 @@ export default class Scooters {
   async batterySwapsByLicensePlate(license_plate) {
     const result = await Scooter.aggregate([
       {$match: {license_plate: license_plate}},
-      {$sort: {_request_time: 1}},
-      {$project: {_request_time: 1, energy_level: 1}},
+      {$sort: {_request_time: 1}}
     ]).exec()
 
     return result.filter((doc, i) => {
