@@ -75,6 +75,15 @@ export default class Scooters {
     })
   }
 
+  async energyLevelDistributionPerLicensePlate(license_plate) {
+    return await Scooter.aggregate([
+      {$match: {license_plate: license_plate}},
+      {$group: {_id: '$energy_level', count: {$sum: 1}}},
+      {$project: {_id: 0, energy_level: '$_id', count: '$count'}},
+      {$sort: {energy_level: 1}}
+    ]).exec()
+  }
+
   async findById(_id) {
     return await Scooter.aggregate([
       { $project: { license_plate: 1 } },

@@ -28,6 +28,7 @@ export default route.define([
   route.get("/scooters/license_plates/:license_plate/positions", ['req', 'license_plate'], scootersController.positionsByLicensePlate),
   route.get("/scooters/license_plates/:license_plate/positions/count", ['req', 'license_plate'], scootersController.countPositionsByLicensePlate),
   route.get("/scooters/license_plates/:license_plate/positions/battery_swaps", ['req', 'license_plate'], scootersController.batterySwapsByLicensePlate),
+  route.get("/scooters/license_plates/:license_plate/energy_level/distribution", ['req', 'license_plate'], scootersController.energyLevelDistributionPerLicensePlate),
   route.get("/scooters/license_plates", ['req'], scootersController.licensePlates),
 
   route.get("/scooters/most_used", ['req'], scootersController.mostUsed),

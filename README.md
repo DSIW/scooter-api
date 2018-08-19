@@ -66,6 +66,7 @@ GET /scooters/license_plates/count
 GET /scooters/license_plates/:license_plate/positions
 GET /scooters/license_plates/:license_plate/positions/count
 GET /scooters/license_plates/:license_plate/positions/battery_swaps
+GET /scooters/license_plates/:license_plate/positions/energy_level/distribution
 GET /scooters/license_plates
 
 GET /scooters/most_used
