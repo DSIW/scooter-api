@@ -68,7 +68,6 @@ GET /scooters/:license_plate/positions/count
 GET /scooters/:license_plate/positions/battery_swaps
 GET /scooters/:license_plate/positions/energy_level/distribution
 GET /scooters/:license_plate/drives
-GET /scooters/:license_plate/usage
 
 GET /scooters/energy_level/stats
 GET /scooters/energy_level/distribution
@@ -95,7 +94,7 @@ GET /scooters/energy_level/per_hour
 
 * [x] Most used scooters
 * [x] Drives per scooter
-* [ ] Mean driving distance
+* [x] Distances per drive
 
 ### Energy level
 * [x] Energy level distribution
