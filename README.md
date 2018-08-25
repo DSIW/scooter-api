@@ -53,8 +53,7 @@ Now you can start requesting the server on port 3000. I like to use [httpie](htt
 ```
 GET /scooters
 GET /scooters/count
-
-GET /scooters/findById/:_id
+GET /scooters/license_plates
 
 GET /scooters/positions/current
 GET /scooters/positions/current/near_by/:lat/:lng/:distance
@@ -64,12 +63,12 @@ GET /scooters/positions/count/per_time_unit/:unit
 
 GET /scooters/battery_swaps
 
-GET /scooters/license_plates/count
-GET /scooters/license_plates/:license_plate/positions
-GET /scooters/license_plates/:license_plate/positions/count
-GET /scooters/license_plates/:license_plate/positions/battery_swaps
-GET /scooters/license_plates/:license_plate/positions/energy_level/distribution
-GET /scooters/license_plates
+GET /scooters/:license_plate/positions
+GET /scooters/:license_plate/positions/count
+GET /scooters/:license_plate/positions/battery_swaps
+GET /scooters/:license_plate/positions/energy_level/distribution
+GET /scooters/:license_plate/drives
+GET /scooters/:license_plate/usage
 
 GET /scooters/most_used
 

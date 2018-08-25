@@ -19,11 +19,6 @@ export async function all(req) {
   return ok({ scooters })
 }
 
-export async function findById(req, _id) {
-  const scooter = await scootersRepository.findById(_id)
-  return ok({ _id, scooter })
-}
-
 export async function count(req) {
   const count = await scootersRepository.count()
   return ok({ count })

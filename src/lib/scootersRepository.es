@@ -5,10 +5,6 @@ export default class Scooters {
     return await Scooter.find().limit(3).exec()
   }
 
-  async findById(_id) {
-    return await Scooter.findOne(_id).exec()
-  }
-
   async licensePlates() {
     const result = await Scooter.aggregate([
       {$group: {_id: '$license_plate'}},
