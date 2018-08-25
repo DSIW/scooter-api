@@ -1,4 +1,32 @@
-import Scooter from './scooterModel'
+import Scooter, { RawScooter } from './scooterModel'
+
+const MIN_ENERGY_LOSS = -2 // %
+const MIN_DISTANCE = 300 // meters
+
+const freshBattery = (doc, prevDoc) => {
+  const diff = doc.energy_level - prevDoc.energy_level
+  return doc.energy_level > 90 && diff > 0
+}
+
+const calcDistance = (pos1, pos2) => {
+  const lat1 = pos1.latitude
+  const lon1 = pos1.longitude
+  const lat2 = pos2.latitude
+  const lon2 = pos2.longitude
+
+  const toRadians = (degrees) => degrees * (Math.PI/180)
+
+  const phi1 = toRadians(lat1)
+  const phi2 = toRadians(lat2)
+  const delta = toRadians(lon2-lon1)
+  const R = 6371e3 // gives d in metres
+
+  const sin = Math.sin(phi1) * Math.sin(phi2)
+  const cos = Math.cos(phi1) * Math.cos(phi2)
+  const distance = Math.acos( sin + cos * Math.cos(delta) ) * R
+
+  return distance
+}
 
 export default class Scooters {
   async all() {
@@ -62,10 +90,7 @@ export default class Scooters {
         return false
       }
 
-      const prevDoc = result[i-1]
-      const diff = doc.energy_level - prevDoc.energy_level
-
-      return doc.energy_level > 90 && diff > 0
+      return freshBattery(doc, result[i-1])
     })
   }
 
@@ -78,11 +103,42 @@ export default class Scooters {
     ]).exec()
   }
 
-  async findById(_id) {
-    return await Scooter.aggregate([
-      { $project: { license_plate: 1 } },
-      { $limit: 3 }
+  async drivesByLicensePlate(license_plate) {
+    const result = await Scooter.aggregate([
+      {$match: {license_plate: license_plate}},
+      {$sort: {_request_time: 1}}
     ]).exec()
+
+    const pairs = []
+
+    result.forEach((doc, index) => {
+      if (index >= result.length - 1) {
+        return
+      }
+
+      const nextDoc = result[index+1]
+
+      const energyLoss = nextDoc.energy_level - doc.energy_level
+      const distance = calcDistance(nextDoc, doc)
+
+      pairs.push({ from: doc, to: nextDoc, energyLoss, distance })
+    })
+
+    const driveFilter = ({ from, to, energyLoss, distance }) => {
+
+      const enoughDistance = distance >= MIN_DISTANCE
+      const enoughEnergyLoss = energyLoss <= MIN_ENERGY_LOSS
+
+      return enoughDistance && enoughEnergyLoss
+    }
+
+    return pairs.filter(driveFilter)
+  }
+
+  async usageByLicensePlate(license_plate) {
+    return {
+      drives
+    }
   }
 
   async countPositions() {

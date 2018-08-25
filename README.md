@@ -94,7 +94,7 @@ GET /scooters/energy_level/per_hour
 ### Drives
 
 * [x] Most used scooters
-* [ ] Drives per scooter
+* [x] Drives per scooter
 * [ ] Mean driving distance
 
 ### Energy level
