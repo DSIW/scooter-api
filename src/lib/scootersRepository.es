@@ -103,6 +103,14 @@ export default class Scooters {
     ]).exec()
   }
 
+  async countPositionsByTimeUnit(unit) {
+    return await Scooter.aggregate([
+      {$group: {_id: { [`$${unit}`]: '$_request_time' }, count: {$sum: 1}}},
+      {$project: {_id: 0, [unit]: '$_id', count: '$count'}},
+      {$sort: {[unit]: 1}}
+    ]).exec()
+  }
+
   async energyLevelDistribution() {
     return await Scooter.aggregate([
       {$group: {_id: '$energy_level', count: {$sum: 1}}},

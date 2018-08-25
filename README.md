@@ -60,6 +60,7 @@ GET /scooters/positions/current
 GET /scooters/positions/current/near_by/:lat/:lng/:distance
 GET /scooters/positions/count
 GET /scooters/positions/count/history/days/:days
+GET /scooters/positions/count/per_time_unit/:unit
 
 GET /scooters/battery_swaps
 

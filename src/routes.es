@@ -22,6 +22,7 @@ export default route.define([
   route.get("/scooters/positions/current/near_by/:lat/:lng/:distance", ['req', 'lat', 'lng', 'distance'], scootersController.nextAvailableScootersByLocation),
   route.get("/scooters/positions/count", ['req'], scootersController.countPositions),
   route.get("/scooters/positions/count/history/days/:days", ['req', 'days'], scootersController.countPositionsByTime),
+  route.get("/scooters/positions/count/per_time_unit/:unit", ['req', 'unit'], scootersController.countPositionsByTimeUnit),
 
   route.get("/scooters/battery_swaps", ['req'], scootersController.batterySwaps),
 
