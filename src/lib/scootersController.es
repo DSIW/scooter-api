@@ -79,7 +79,8 @@ export async function energyLevelDistribution(req) {
 
 export async function energyLevelDistributionPerLicensePlate(req, license_plate) {
   const distribution = await scootersRepository.energyLevelDistributionPerLicensePlate(license_plate)
-  return ok({ distribution })
+  return ok({ license_plate, distribution })
+}
 
 export async function drivesByLicensePlate(req, license_plate) {
   const drives = await scootersRepository.drivesByLicensePlate(license_plate)
