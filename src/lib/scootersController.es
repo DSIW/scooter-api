@@ -39,6 +39,12 @@ export async function countPositions(req) {
   return ok({ count })
 }
 
+export async function countPositionsByTime(req, days) {
+  days = parseInt(days)
+  const history = await scootersRepository.countPositionsByTime(days)
+  return ok({ history })
+}
+
 export async function currentPositions(req) {
   const lastRequestTime = await scootersRepository.lastRequestTime()
   const positions = await scootersRepository.positionsAt(lastRequestTime)
