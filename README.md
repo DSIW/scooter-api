@@ -78,6 +78,36 @@ GET /scooters/energy_level/distribution
 GET /scooters/energy_level/per_hour
 ```
 
+## Features
+
+### Availability
+
+* [x] Current available scooters
+* [x] Next available scooters to location and radius (sorted by distance)
+* [x] Available scooters in last x days
+* [x] # available scooters / per time (hour)
+* [x] # available scooters per week day
+* [ ] # available scooters / per location circle
+* [ ] # available scooters / per time and location radius
+* [ ] Minutes per day per scooter not available / available
+* [ ] Mean distance to next available scooter
+* [ ] Heatmap of available scooters
+* [ ] Probability of available scooters in location radius
+
+### Drives
+
+* [x] Most used scooters
+* [ ] Drives per scooter
+* [ ] Mean driving distance
+
+### Energy level
+* [x] Energy level distribution
+* [x] Energy level distribution per hour
+* [ ] Scooter battery swaps / per time (hour)
+* [ ] Animation of battery swaps
+* [ ] Most battery swapped scooters
+* [ ] Most used vs most battery swapped scooters
+
 ## License
 
 MIT License
